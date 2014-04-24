@@ -1,0 +1,11 @@
+include ../_helpers/anchor.jade
+
+article
+  .container
+    .row
+      #sidebar.col-sm-3
+        div(data-spy="affix" data-offset-top="250" data-offset-bottom="200")
+            ul.nav.nav-silent.nav-sidebar
+              != sidebar
+      .col-sm-9      
+        != anchor(yield)

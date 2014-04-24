@@ -1,0 +1,7 @@
+article.container
+  .row
+    .col-md-offset-1.col-md-10
+      for post, slug in public.posts._data
+        if current.source == slug
+          != post_details
+      != yield

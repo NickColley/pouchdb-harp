@@ -1,0 +1,30 @@
+- function truncate(string, length) {
+  - var length = length || 30;
+  - return string.split(/\s+/, length).join(" ");
+- }
+
+- var post_author = post.author
+- var post_gravatar = 'http://www.fillmurray.com/82/82'  
+
+for author, author_name in public._data['authors']
+  if author_name == post.author
+    if author.twitter
+       - post_author = '<a href="https://twitter.com/' + author.twitter + '">' + post.author + '</a>'
+    if author.gravatar
+      - post_gravatar = 'https://gravatar.com/avatar/' + author.gravatar
+      
+.post
+  .media
+    .media-object.pull-left
+      img(src='#{ post_gravatar }' alt='#{ post_author }').img-circle.img-responsive
+    .media-body
+      p
+        strong By: 
+        != post_author
+        br
+        strong Published: 
+        = post.date
+        br
+        if current.source == "blog" || current.source == "index"
+          != partial('posts/#{ slug }')     
+          a(href='posts/#{ slug }') [...]

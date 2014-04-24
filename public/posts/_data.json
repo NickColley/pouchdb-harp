@@ -1,0 +1,18 @@
+{
+  "pagination-strategies-with-pouchdb": {
+    "date": "2014-04-14",
+    "title": "Pagination strategies with PouchDB",
+    "excerpt": "PouchDB, like CouchDB, was designed to store large amounts of data. However, once you're dealing with hundreds, thousands, or even millions of documents in a single database&hellip;",
+    "author": "Nolan Lawson"
+  },
+  "pouchdb-2.1.0": {
+    "date": "2014-04-01",
+    "title": "PouchDB 2.1.0",
+    "author": "Dale Harvey"
+  },
+  "welcome-to-the-pouchdb-blog": {
+    "date": "2014-04-01",
+    "title": "Welcome to the PouchDB blog",
+    "author": "Dale Harvey"
+  }
+}

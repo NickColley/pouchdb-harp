@@ -1,0 +1,113 @@
+include _helpers/alert.jade
+
+!!!
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    title= title
+    link(rel="stylesheet" href="/assets/css/pouchdb.css")
+    link(href='http://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans:400,700' rel='stylesheet' type='text/css')
+    link(rel="icon" href="/static/favicon.ico" type="image/x-icon")
+    script.
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-42479701-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    script(src="/assets/js/highlight.min.js")       
+    script hljs.initHighlightingOnLoad();
+  body(data-spy="scroll", data-target="#sidebar")
+  
+    header
+      a(href="https://github.com/pouchdb/pouchdb", target="_blank")
+         .ribbon GitHub
+      .container
+        a(href="/").logo
+          .logo-img
+          .logo-type PouchDB
+        ul.nav.nav-header.nav-pills
+          li
+            a(href="/blog.html").btn.btn-link.btn-lg Blog
+          li
+            a(href="/api.html").btn.btn-link.btn-lg API
+          li
+            a(href="/learn.html").btn.btn-link.btn-lg Learn
+          li
+            a(href="https://github.com/pouchdb/pouchdb/releases/download/{{ site.version }}/pouchdb-{{ site.version }}.min.js").btn.btn-primary.btn-lg Download    
+            
+    unless current.source == 'index'
+      .page-head
+        .container
+          h1= title
+          
+    if current.path[0] == 'index'
+      != alert(yield)
+    else if current.path[0] == 'posts'    
+      for post, slug in public.posts._data
+        if current.source == slug
+          - var post_details = partial('_partials/post_details', {post: post, slug: slug})
+          != alert(partial('_layouts/post', {yield: yield, post_details: post_details}))
+    else if sidebar
+      - var side = partial('_partials/' + sidebar)
+      != alert(partial('_layouts/2ColLeft', {yield: yield, sidebar: side}))
+    else
+      != alert(partial('_layouts/1Col', {yield: yield}))
+          
+    .icons
+      .container
+        .row
+          .col-xs-4.col-md-offset-0.col-md-2
+            a(href='https://twitter.com/pouchdb')
+              .icon.icon-twitter
+          .col-xs-4.col-md-2
+            a(href='http://www.browserstack.com/')
+              .icon.icon-browserstack
+          .col-xs-4.col-md-2
+            a(href='https://github.com/pouchdb/pouchdb')
+              .icon.icon-github
+          .col-xs-4.col-md-offset-0.col-md-2
+            a(href='https://travis-ci.org/pouchdb/pouchdb')
+              .icon.icon-travis
+          .col-xs-4.col-md-2
+            a(href='http://couchdb.apache.org/')
+              .icon.icon-couchdb
+          .col-xs-4.col-md-2
+            a(href='https://saucelabs.com')
+              .icon.icon-saucelabs
+              
+    footer
+      .container
+        .row
+          .col-sm-3
+            h3.nav-head Learn
+            ul.nav.nav-silent
+              li
+                a(href="/getting-started.html") Getting Started
+              li
+                a(href="/api.html") API Guide 
+              li
+                a(href="https://github.com/daleharvey/pouchdb/wiki") Wiki
+          .col-sm-3
+            h3.nav-head Discuss
+            ul.nav.nav-silent
+              li
+                a(href="https://groups.google.com/forum/#!forum/pouchdb") Mailing List
+                a(href="irc://freenode.net/#pouchdb") IRC
+                a(href="http://twitter.com/pouchdb") Twitter
+                a(href="http://stackoverflow.com/questions/tagged/pouchdb") StackOverflow
+          .col-sm-3
+            h3.nav-head Contribute
+            ul.nav.nav-silent
+              li
+                a(href="https://github.com/daleharvey/pouchdb/blob/master/CONTRIBUTING.md") Contributing
+                a(href="https://github.com/daleharvey/pouchdb") Source
+                a(href="https://github.com/daleharvey/pouchdb/issues") Issues
+                a(href="https://github.com/daleharvey/pouchdb/blob/master/LICENSE") Apache License
+                
+    script(src="http://code.jquery.com/jquery.min.js")
+    script(src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")    

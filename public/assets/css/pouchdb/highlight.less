@@ -1,0 +1,34 @@
+pre {
+  background-color: #3f3f3f;
+
+  border: none;
+  border-radius: 10px;
+}
+
+
+.hljs {
+  display: block;
+  padding: 0.5em;
+  color: white;
+  
+  &-comment {
+    color: #969896;
+    font-style: italic;
+  }
+
+  &-keyword,
+  &-attribute,
+  .javascript &-title {
+    color: #66d9ef;
+  }
+  
+
+  &-string,
+  &-variable,
+  &-tag &-value {
+    color: #e6db74;
+  }
+
+  &-number { color: #ae81ff; }
+  &-tag { color: #f92672; }
+}

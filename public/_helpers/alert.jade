@@ -1,0 +1,33 @@
+//-
+  Helper functions for alerts
+  mixin e.g.:          
+    +alert Default alert
+    +alert('danger') BOOO!
+    +alert('warning')
+      This is a warning
+  
+  parser e.g.:
+    alert('<!-- alert_start--> Default alert <!-- alert_end -->')
+    alert('<!-- alert_start:danger --> BOOO! <!-- alert_end -->')
+    != alert(partial('_layouts/1Col', {yield: yield}))
+  
+- function replaceAll(find, replace, str) {
+  - return str.replace(new RegExp(find, 'g'), replace);
+- }
+- function alert(content) {
+  - content = replaceAll("<!-- alert_start -->", "<div class='alert alert-info'><div class='alert-text'>", content)
+  - content = replaceAll("<!-- alert_start:info -->", "<div class='alert alert-info'><div class='alert-text'>", content)
+  - content = replaceAll("<!-- alert_start:warning -->", "<div class='alert alert-warning'><div class='alert-text'>", content)
+  - content = replaceAll("<!-- alert_start:success -->", "<div class='alert alert-success'><div class='alert-text'>", content)
+  - content = replaceAll("<!-- alert_start:danger -->", "<div class='alert alert-danger'><div class='alert-text'>", content)
+  - content = replaceAll("<!-- alert_end -->", "</div></div>", content)
+  - return content
+- }
+
+mixin alert(variant)
+  - var type = 'alert-info';
+  if variant
+    - type = 'alert-' + variant;
+  .alert(class=type)
+    .alert-text
+      block

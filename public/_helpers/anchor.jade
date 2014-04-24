@@ -1,0 +1,21 @@
+//-
+  Helper functions for anchor links
+  mixin e.g.:          
+    +anchor('potato_king') Potato King
+    +anchor('create_document') Create Document
+    
+  parser e.g.:
+    anchor('<!-- anchor_start --> Default anchor <!-- anchor_end -->')
+    anchor('<!-- anchor_start --> BOOO! <!-- anchor_end -->')
+    != anchor(partial('_layouts/1Col', {yield: yield}))
+  
+- function anchor(content) {
+  - content = content.replace(/<a(\s*)href=["']#(.+?)["'](\s*)>/g, function(match, whitespace, contents) {
+    - return "<a class='h2 anchor' href='#" + contents + "' name='" + contents + "'>";
+  - })
+  - return content
+- }
+
+mixin anchor(anchor)
+  a(href='#' + anchor, name=anchor).h2.anchor
+    block

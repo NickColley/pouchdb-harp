@@ -1,0 +1,67 @@
+.intro
+  .container
+    .row
+      .col-sm-6
+        h1 The Database that Syncs!
+        p
+          | PouchDB is an open-source JavaScript database inspired by 
+          a(href='http://couchdb.apache.org/') Apache CouchDB
+          |  that is designed to run well within the browser.
+        p PouchDB was created to help web developers build applications that work as well offline as they do online.
+        p
+          | It enables applications to store data locally while offline,
+          | then synchronize it with CouchDB and compatible servers when the application is back online,
+          | keeping the user's data in sync no matter where they next login.
+        a(href='/learn.html').btn.btn-primary.btn-lg Learn more
+      .col-sm-6
+        pre
+          code
+            | var db = new PouchDB('dbname');
+            | 
+            | db.put({
+            |  _id: 'dave@gmail.com',
+            |  name: 'David',
+            |  age: 67
+            | });
+            | 
+            | db.changes({
+            |   onChange: function() {
+            |     console.log('Ch-Ch-Changes');
+            |   }
+            | });
+            | 
+            | db.replicate.to('http://example.com/mydb');
+.infoblocks
+  .container
+    .row
+      .block.col-sm-6.col-md-3
+        .icon.icon-node
+        h3 Cross Browser
+        p Works in Firefox, Chrome, Opera, Safari, IE and Node.js
+      .block.col-sm-6.col-md-3
+        .icon.icon-light
+        h3 Lightweight
+        p PouchDB is just a script tag and 25KB (gzipped) away in the browser, or
+        code $ npm install pouchdb
+        p away in Node.
+      .block.col-sm-6.col-md-3
+        .icon.icon-learn
+        h3 Easy to Learn
+        p Requires some programming knowledge, however PouchDB is a piece of cake to learn.
+      .block.col-sm-6.col-md-3
+        .icon.icon-open
+        h3 Open Source
+        p Everything is developed out in the open on Github, contributors always welcome!
+
+.blog
+  .container
+    h3 Latest
+    .row
+      - var count = 0;
+      for post, slug in public.posts._data  
+        - count++;
+        if count <= 2
+          .col-md-6
+            a(href="/posts/#{ slug }").h4= post.title
+            != partial('_partials/post_details', {post: post, slug: slug})
+      a(href='/blog.html').btn.btn-primary.btn-lg View more

@@ -1,0 +1,3 @@
+for post, slug in public.posts._data  
+  a(href="/posts/#{ slug }").h3= post.title
+  != partial('_partials/post_details', {post: post, slug: slug})
